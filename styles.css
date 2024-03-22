@@ -1,0 +1,9 @@
+/* You can add additional styles or override Bootstrap styles here */
+.col-4 {
+    color: red; /* This is from your original styles.css - you might want to adjust or remove it */
+}
+
+/* Additional styles */
+.nav-tabs .nav-link {
+    cursor: pointer;
+}
