@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Instagram Photo Feed with Bootstrap</title>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Instagram</a>
+            <!-- Button trigger modal -->
+            <button class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#createPostModal">
+                Create A New Post
+            </button>
+
+            <!-- Settings Dropdown -->
+            <div class="btn-group">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Settings
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="#">Accessibility</a></li>
+                    <li><a class="dropdown-item" href="#">Privacy & Data</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="#">Log out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Create Post Modal -->
+    <div class="modal fade" id="createPostModal" tabindex="-1" aria-labelledby="createPostModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createPostModalLabel">Create a new post</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="post-caption" class="form-label">Caption</label>
+                            <textarea class="form-control" id="post-caption" rows="2" placeholder="Add the caption of your post here"></textarea>
+                        </div>
+                        <!-- Optionally add more form elements if needed -->
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Publish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Feed -->
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="btn-group mb-4" role="group">
+                <button type="button" class="btn btn-secondary" id="toggle-single-view">Single Picture View</button>
+                <button type="button" class="btn btn-secondary" id="toggle-grid-view">Grid View</button>
+            </div>
+            <div id="image-feed" class="row row-cols-1">
+                <!-- Images will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for toggling between views
+        document.getElementById('toggle-single-view').addEventListener('click', function() {
+            // Single view layout with random captions
+            document.getElementById('image-feed').className = 'row row-cols-1';
+            var innerHTML = '';
+            for (let i = 1; i <= 6; i++) {
+                innerHTML += `
+                    <div class="col mb-4">
+                        <img src="https://source.unsplash.com/random/300x300?sig=${i}" class="img-fluid" alt="Random Image">
+                        <p class="mt-2">Random caption ${i}</p>
+                    </div>
+                `;
+            }
+            document.getElementById('image-feed').innerHTML = innerHTML;
+        });
+
+        document.getElementById('toggle-grid-view').addEventListener('click', function() {
+            // Grid view layout
+            document.getElementById('image-feed').className = 'row row-cols-1 row-cols-md-3 g-3';
+            var innerHTML = '';
+            for (let i = 7; i <= 12; i++) {
+                innerHTML += `
+                    <div class="col mb-4">
+                        <img src="https://source.unsplash.com/random/300x300?sig=${i}" class="img-fluid" alt="Random Image">
+                        <!-- The caption can be added here if needed for grid view -->
+                    </div>
+                `;
+            }
+            document.getElementById('image-feed').innerHTML = innerHTML;
+        });
+
+        // Initially display single view
+        document.getElementById('toggle-single-view').click();
+
+    </script>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
